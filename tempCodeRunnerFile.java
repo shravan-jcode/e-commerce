@@ -30,26 +30,11 @@ public class TranspositionCipher {
         String plain = "";
         int n = cipher.length() / key;
         int extra = cipher.length() % key;
-
-        int[] colLengths = new int[key];
-        for (int i = 0; i < key; i++) {
-            colLengths[i] = n + (i < extra ? 1 : 0);
-        }
-
         int index = 0;
-        char[][] grid = new char[key][];
-        for (int i = 0; i < key; i++) {
-            grid[i] = new char[colLengths[i]];
-            for (int j = 0; j < colLengths[i]; j++) {
-                grid[i][j] = cipher.charAt(index++);
-            }
-        }
 
-        for (int row = 0; row < n + 1; row++) {
-            for (int col = 0; col < key; col++) {
-                if (row < grid[col].length) {
-                    plain += grid[col][row];
-                }
+        for (int i = 0; i < n + 1; i++) {
+            for (int j = 0; j < key && index < cipher.length(); j++) {
+                plain += cipher.charAt(index++);
             }
         }
         return plain;

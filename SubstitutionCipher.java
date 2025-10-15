@@ -15,22 +15,28 @@ public class SubstitutionCipher {
         // Encryption
         for (int i = 0; i < text.length(); i++) {
             char c = text.charAt(i);
-            if (Character.isLetter(c)) {
+            if (Character.isUpperCase(c)) {
                 char shift = (char)(((c - 'A' + key) % 26) + 'A');
-                encrypted += Character.isUpperCase(c) ? shift : Character.toLowerCase(shift);
+                encrypted += shift;
+            } else if (Character.isLowerCase(c)) {
+                char shift = (char)(((c - 'a' + key) % 26) + 'a');
+                encrypted += shift;
             } else {
-                encrypted += c;
+                encrypted += c; // Non-letter characters remain unchanged
             }
         }
 
         // Decryption
         for (int i = 0; i < encrypted.length(); i++) {
             char c = encrypted.charAt(i);
-            if (Character.isLetter(c)) {
+            if (Character.isUpperCase(c)) {
                 char shift = (char)(((c - 'A' - key + 26) % 26) + 'A');
-                decrypted += Character.isUpperCase(c) ? shift : Character.toLowerCase(shift);
+                decrypted += shift;
+            } else if (Character.isLowerCase(c)) {
+                char shift = (char)(((c - 'a' - key + 26) % 26) + 'a');
+                decrypted += shift;
             } else {
-                decrypted += c;
+                decrypted += c; // Non-letter characters remain unchanged
             }
         }
 

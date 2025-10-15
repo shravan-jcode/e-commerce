@@ -13,6 +13,7 @@ public class DF {
        
         System.out.print("Enter Alice's private key: ");
         int a = sc.nextInt();
+        
         System.out.print("Enter Bob's private key: ");
         int b = sc.nextInt();
 
